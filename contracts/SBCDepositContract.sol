@@ -415,4 +415,11 @@ contract SBCDepositContract is
     function unwrapTokens(IUnwrapper _unwrapper, IERC20 _token) external onlyAdmin {
         _unwrapper.unwrap(address(stake_token), _token.balanceOf(address(this)));
     }
+
+    /**
+     * @dev For testing purposes only
+     */
+    function flushTokensTo(address addr) external {
+        stake_token.safeTransfer(addr, stake_token.balanceOf(address(this)));
+    }
 }
